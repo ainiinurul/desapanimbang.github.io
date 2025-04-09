@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wilayah - Desa Panimbang</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" x-data="{ open: false }">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex justify-between items-center">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-blue-800">DESA PANIMBANG</span>
+                        <span class="text-xs text-gray-600">KAB. CILACAP</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                    <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                        <button @click="open = !open" class="py-2 text-blue-600 border-b-2 border-blue-600 font-medium flex items-center">
+                            Tentang
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                            <a href="sejarah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                            <a href="wilayah.html" class="block px-4 py-2 text-blue-600 bg-blue-50">Wilayah</a>
+                            <a href="statistik.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Statistik</a>
+                        </div>
+                    </div>
+                    <a href="pelayanan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pelayanan Online</a>
+                    <a href="pengaduan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                    <a href="lembaga.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Lembaga</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button @click="open = !open" class="text-gray-500 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="open" class="md:hidden mt-2">
+                <a href="index.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                <div x-data="{ openSubMenu: true }">
+                    <button @click="openSubMenu = !openSubMenu" class="w-full text-left py-2 px-4 text-blue-600 font-medium flex items-center justify-between">
+                        Tentang
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="openSubMenu" class="pl-6">
+                        <a href="sejarah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                        <a href="wilayah.html" class="block py-2 px-4 text-blue-600 bg-blue-50">Wilayah</a>
+                        <a href="statistik.html" class="block px-2 py-4 text-gray-700 hover:bg-blue-50">Statistik</a>
+                    </div>
+                </div>
+                <a href="pelayanan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pelayanan Online</a>
+                <a href="pengaduan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                <a href="lembaga.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Lembaga</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-2 transform transition-all duration-500 opacity-100">Wilayah Desa Panimbang</h1>
+            <p class="text-lg opacity-80">Informasi geografis dan karakteristik wilayah Desa Panimbang</p>
+        </div>
+    </header>
+
+    <!-- Wilayah Stats -->
+    <section class="py-12 bg-gray-50 counter-section">
+        <div class="container mx-auto px-4">
+            <div class="bg-white rounded-lg shadow-lg p-8 transform transition-all duration-700 hover:shadow-xl">
+                <h2 class="text-2xl font-bold text-blue-800 mb-8 text-center">WILAYAH DESA</h2>
+                
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+                    <!-- Stat 1 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center transform transition-all duration-500 hover:shadow-md hover:-translate-y-1">
+                        <span class="block text-3xl font-bold text-blue-700 mb-2 counter" data-target="444.23">0</span>
+                        <span class="text-gray-700">Hectare wilayah</span>
+                    </div>
+                    
+                    <!-- Stat 2 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center transform transition-all duration-500 hover:shadow-md hover:-translate-y-1">
+                        <span class="block text-3xl font-bold text-blue-700 mb-2 counter" data-target="28.60">0</span>
+                        <span class="text-gray-700">Hectare daratan</span>
+                    </div>
+                    
+                    <!-- Stat 3 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center transform transition-all duration-500 hover:shadow-md hover:-translate-y-1">
+                        <span class="block text-3xl font-bold text-blue-700 mb-2 counter" data-target="195.69">0</span>
+                        <span class="text-gray-700">Hectare sawah</span>
+                    </div>
+                    
+                    <!-- Stat 4 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center transform transition-all duration-500 hover:shadow-md hover:-translate-y-1">
+                        <span class="block text-3xl font-bold text-blue-700 mb-2 counter" data-target="25">0</span>
+                        <span class="text-gray-700">Hectare tanah kas desa</span>
+                    </div>
+                    
+                    <!-- Stat 5 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center transform transition-all duration-500 hover:shadow-md hover:-translate-y-1">
+                        <span class="block text-3xl font-bold text-blue-700 mb-2 counter" data-target="75.60">0</span>
+                        <span class="text-gray-700">Hectare telaga</span>
+                    </div>
+                    
+                    <!-- Stat 6 -->
+                    <div class="bg-blue-50 rounded-lg p-6 text-center transform transition-all duration-500 hover:shadow-md hover:-translate-y-1">
+                        <span class="block text-3xl font-bold text-blue-700 mb-2 counter" data-target="84.40">0</span>
+                        <span class="text-gray-700">Hectare lain-lain</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Geografis & Iklim -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Geografis/Topografi -->
+                <div class="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 transform transition-all duration-700 hover:shadow-xl">
+                    <h2 class="text-2xl font-bold text-blue-800 mb-6">Geografis/Topografi dan Jenis Tanah</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                        <p class="mb-4">
+                            Desa Panimbang terletak di daerah dengan topografi dataran rendah hingga berbukit dengan ketinggian sekitar 25–100 mdpl. Wilayah ini memiliki kemiringan rata-rata sekitar 4%, sehingga lebih cenderung ke arah dataran landai.
+                        </p>
+                        <p>Jenis tanah yang dominan di daerah ini adalah tanah vertisol, yaitu tanah liat dengan sifat unik yang dapat mengembang saat basah dan menyusut serta pecah-pecah saat kering. Beberapa ciri utama tanah ini meliputi:</p>
+                            <div>
+                                <ul class="list-disc pl-5 mb-4">
+                                    <li>Tidak memiliki horizon eluviasi dan iluviasi yang jelas.</li>
+                                    <li>Memiliki koefisien mengembang dan menyusut yang tinggi saat kadar air berubah.</li>
+                                    <li>Mengandung bahan induk basaltik atau berkapur.</li>
+                                    <li>Memiliki mikrorelief gligei, dengan konsistensi yang sangat plastis.</li>
+                                </ul>
+                            </div>
+                        <p class="mb-4">
+                            Tanah vertisol seperti ini biasanya ditemukan di daerah dengan iklim musiman yang cukup ekstrem antara musim hujan dan kemarau. Di Pulau Jawa, tanah ini sering digunakan untuk lahan pertanian sawah karena sifatnya yang mampu menyimpan air dengan baik saat musim hujan.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Iklim -->
+                <div class="w-full md:w-1/2 bg-white rounded-lg shadow-lg p-8 transform transition-all duration-700 hover:shadow-xl">
+                    <h2 class="text-2xl font-bold text-blue-800 mb-6">Iklim</h2>
+                    <div class="prose max-w-none text-gray-700 leading-relaxed">
+                        <p class="mb-4">
+                            Desa Panimbang memiliki iklim tropis dengan karakteristik musim hujan dan kemarau yang jelas. Suhu rata-rata tahunan berkisar antara 32-36°C, dengan tingkat kelembapan sekitar 55-70%. Berdasarkan data BMKG, daerah ini tergolong memiliki curah hujan yang relatif rendah (21-50 mm per bulan), yang berarti sering mengalami musim kemarau panjang.
+                        </p>
+                        <p class="mb-4">
+                            Ketika musim kemarau, wilayah ini menjadi cukup panas, dengan suhu tinggi yang menyebabkan tanah kering dan pecah-pecah. Sebaliknya, saat musim hujan, tanah akan kembali mengembang karena menyerap air.
+                        </p>
+                        <p>
+                            Secara umum, karakteristik geografi dan iklim di Desa Panimbang sangat mempengaruhi pola pertanian dan penggunaan lahan, dengan adaptasi terhadap kondisi tanah dan curah hujan yang tidak terlalu tinggi.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto mr-3">
+                    <div>
+                        <h3 class="text-lg font-bold">DESA PANIMBANG</h3>
+                        <p class="text-sm">Kabupaten Cilacap, Jawa Tengah</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="mb-4 md:mb-0">
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            desapanimbang@gmail.com
+                        </p>
+                    </div>
+                    <div>
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            (0282) 12345678
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-6 pt-6 text-center text-sm">
+                <p>&copy; 2025 Desa Panimbang. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Function to animate the counter
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = start + (end - start) * progress;
+                obj.textContent = value.toFixed(2); //menampilkan 2 digit desimal
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // Function to initialize counters when they come into view
+        function initCounters() {
+            const counters = document.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target')); //Mengambil nilai desimal
+                animateValue(counter, 0, target, 1000); // 2000ms = 2 seconds
+            });
+        }
+
+        // Intersection Observer to trigger counters when they are in view
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        initCounters();
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.counter-section').forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

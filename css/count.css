@@ -1,0 +1,22 @@
+/* CSS untuk animasi counting */
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.count-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: countUp 1s ease-out forwards;
+}
+
+.count-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+}

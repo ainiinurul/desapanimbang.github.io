@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desa Panimbang - Kabupaten Cilacap</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" x-data="{ open: false }">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex justify-between items-center">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-blue-800">DESA PANIMBANG</span>
+                        <span class="text-xs text-gray-600">KAB. CILACAP</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="py-2 text-blue-600 border-b-2 border-blue-600 font-medium">Beranda</a>
+                    <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                        <button @click="open = !open" class="py-2 text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                            Tentang
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                            <a href="sejarah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                            <a href="wilayah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Wilayah</a>
+                            <a href="statistik.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Statistik</a>
+                        </div>
+                    </div>
+                    <a href="pelayanan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pelayanan Online</a>
+                    <a href="pengaduan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                    <a href="lembaga.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Lembaga</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button @click="open = !open" class="text-gray-500 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="open" class="md:hidden mt-2">
+                <a href="index.html" class="block py-2 px-4 text-blue-600 font-medium">Beranda</a>
+                <div x-data="{ openSubMenu: false }">
+                    <button @click="openSubMenu = !openSubMenu" class="w-full text-left py-2 px-4 text-gray-700 hover:text-blue-600 font-medium flex items-center justify-between">
+                        Tentang
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="openSubMenu" class="pl-6">
+                        <a href="sejarah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                        <a href="wilayah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Wilayah</a>
+                        <a href="statistik.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Statistik</a>
+                    </div>
+                </div>
+                <a href="pelayanan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pelayanan Online</a>
+                <a href="pengaduan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                <a href="lembaga.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Lembaga</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="relative">
+        <div class="bg-cover bg-center h-96" style="background-image: url('/images/desa.jpg');">
+            <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+            <div class="relative container mx-auto px-4 h-full flex flex-col justify-center text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4 transform transition-all duration-500 translate-y-0 opacity-100">Selamat Datang di Desa Panimbang</h1>
+                <p class="text-lg md:text-xl max-w-2xl transform transition-all duration-700 delay-100 translate-y-0 opacity-100">
+                    Desa Panimbang merupakan salah satu desa di Kabupaten Cilacap yang kaya akan sejarah dan budaya. 
+                    Kami memiliki berbagai potensi alam dan masyarakat yang ramah.
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <!-- Maps & Weather Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row gap-8">
+                <!-- Maps -->
+                <div class="w-full md:w-1/2 bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:shadow-xl">
+                    <h2 class="text-xl font-semibold p-4 border-b">Peta Desa Panimbang</h2>
+                    <div class="aspect-w-16 aspect-h-9">
+                        <iframe 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11355.56292625439!2d108.8696549!3d-7.36181455!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e6f809a8f839a91%3A0x5027a76e3571600!2sPanimbang%2C%20Kec.%20Cimanggu%2C%20Kabupaten%20Cilacap%2C%20Jawa%20Tengah!5e1!3m2!1sid!2sid!4v1740842046892!5m2!1sid!2sid" 
+                            width="100%" 
+                            height="350" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy">
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Weather -->
+                <div class="w-full md:w-1/2 bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:shadow-xl">
+                    <h2 class="text-xl font-semibold p-4 border-b">Informasi Waktu & Cuaca</h2>
+                    <div class="p-4 grid grid-cols-2 gap-6">
+                        <div class="text-center p-4 bg-blue-50 rounded-lg transform transition-all duration-500 hover:scale-105">
+                            <h3 class="text-lg font-medium mb-2">Waktu</h3>
+                            <p class="text-2xl font-bold text-blue-600" id="time">10:25:00</p>
+                            <p class="text-gray-600" id="date">Sabtu, 1 Maret 2025</p>
+                        </div>
+                        <div class="text-center p-4 bg-blue-50 rounded-lg transform transition-all duration-500 hover:scale-105">
+                            <h3 class="text-lg font-medium mb-2">Suhu</h3>
+                            <div class="flex justify-center">
+                                <svg class="h-10 w-10 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                </svg>
+                            </div>
+                            <p class="text-2xl font-bold text-blue-600">32°C</p>
+                            <p class="text-gray-600">Terasa seperti 35°C</p>
+                        </div>
+                        <div class="col-span-2 text-center p-4 bg-blue-50 rounded-lg transform transition-all duration-500 hover:scale-105">
+                            <h3 class="text-lg font-medium mb-2">Cuaca</h3>
+                            <p class="text-xl font-bold text-blue-600">Cerah Berawan</p>
+                            <p class="text-gray-600">Kelembaban: 65%</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sambutan Kepala Desa -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-8">
+                <div class="w-full md:w-1/3 flex justify-center">
+                    <div class="w-64 h-auto transform transition-all duration-500 hover:scale-105">
+                        <img src="/images/scoups.jpg" alt="S.COUPS - Kepala Desa" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="w-full md:w-2/3">
+                    <h2 class="text-3xl font-bold text-blue-800 mb-4">"Selamat Datang di Website Desa Kami"</h2>
+                    <p class="text-gray-700 mb-6 leading-relaxed">
+                        Kami senang Anda sudah berkunjung ke website desa kami, semoga melalui situs
+                        web ini kami dapat memberikan segala informasi yang aktual dan terperbarui
+                        langsung dari Desa kami. Situs web ini merupakan salah satu wujud dari
+                        komitmen pemerintah Desa, pada pentingnya komunikasi dan transparansi
+                        public.
+                    </p>
+                    <p class="text-right font-semibold text-blue-700">
+                        S.COUPS,<br>
+                        Kepala Desa Panimbang
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visi Misi Section -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">Visi & Misi Desa Panimbang</h2>
+            
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <div class="p-6">
+                    <div class="mb-8">
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Selamat datang di halaman Visi dan Misi PPID Desa Panimbang. Di sini kami menyediakan akses terhadap informasi publik yang transparan dan akuntabel. Visi kami mencerminkan pandangan jangka panjang kami dalam membangun masyarakat desa yang terlibat aktif dalam pembangunan di desa.
+                        </p>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Misi kami menjabarkan langkah-langkah konkret yang kami ambil untuk mewujudkan visi tersebut. Ini mencakup komitmen kami dalam melayani Anda dengan standar pelayanan yang tinggi, serta upaya kami dalam memastikan bahwa setiap warga desa memiliki akses yang sama terhadap informasi yang penting dan relevan.
+                        </p>
+                        <p class="text-gray-700 mb-6 leading-relaxed">
+                            Visi dan Misi ini adalah landasan kerja kami dan merupakan bagian integral dari komitmen kami untuk membangun tata kelola yang terbuka dan partisipatif. Kami mengundang Anda untuk menyimak lebih lanjut dan memahami arah dan tujuan kami dalam melayani komunitas Desa Panimbang.
+                        </p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <!-- Visi -->
+                        <div class="bg-blue-50 rounded-lg p-6 transform transition-all duration-500 hover:shadow-lg">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-4">Visi</h3>
+                            <p class="text-gray-700 leading-relaxed">
+                                Menjadi pelopor transparansi dan aksesibilitas informasi di tingkat desa, mendorong partisipasi aktif masyarakat dalam tata kelola pemerintahan yang akuntabel, inklusif, dan responsif.
+                            </p>
+                        </div>
+                        
+                        <!-- Misi -->
+                        <div class="bg-blue-50 rounded-lg p-6 transform transition-all duration-500 hover:shadow-lg">
+                            <h3 class="text-2xl font-bold text-blue-800 mb-4">Misi</h3>
+                            <ul class="text-gray-700 space-y-3">
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">1.</span>
+                                    <span>Meningkatkan Aksesibilitas Informasi Publik: Menyediakan informasi yang akurat, tepat waktu, dan relevan kepada seluruh warga desa dan pihak lain yang berkepentingan.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">2.</span>
+                                    <span>Mendorong Transparansi dan Akuntabilitas Pemerintahan: Mengembangkan dan mengimplementasikan mekanisme yang memastikan transparansi dalam proses pengambilan keputusan dan penggunaan sumber daya desa.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">3.</span>
+                                    <span>Memfasilitasi Partisipasi Publik: Membuka ruang dialog dan kolaborasi antara pemerintah desa dan warga, termasuk konsultasi publik dan forum diskusi.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">4.</span>
+                                    <span>Mengembangkan Kapasitas Masyarakat: Menyelenggarakan program edukasi dan pelatihan untuk meningkatkan pemahaman masyarakat tentang hak dan kewajiban mereka dalam mengakses informasi publik.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">5.</span>
+                                    <span>Mengelola Pengaduan dengan Efektif: Menyediakan saluran yang jelas dan responsif untuk pengaduan, saran, dan masukan dari masyarakat, serta menjamin penyelesaian yang adil dan tepat.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">6.</span>
+                                    <span>Mengadopsi Teknologi untuk Layanan yang Lebih Baik: Menggunakan teknologi informasi untuk memudahkan akses, pengolahan, dan distribusi informasi publik.</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="text-blue-600 font-bold mr-2">7.</span>
+                                    <span>Mematuhi Hukum dan Peraturan: Menjamin bahwa seluruh operasi dan layanan PPID sesuai dengan peraturan yang berlaku, termasuk UU Keterbukaan Informasi Publik.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Program Desa -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">Program Desa Panimbang</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Program 1: Kampung KB -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/kampung-kb.png" alt="Kampung KB" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs mb-2">Kesehatan</span>
+                        <h3 class="text-xl font-semibold mb-2">Kampung KB</h3>
+                        <p class="text-gray-600 mb-4">Kampung Keluarga Berkualitas (Kampung KB) merupakan program yang dicanangkan oleh pemerintah untuk meningkatkan...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2025</span>
+                            <a href="program/kampung-kb.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 2: Inovasi Desa -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/inovasi-desa.jpg" alt="Inovasi Desa" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs mb-2">Pembangunan</span>
+                        <h3 class="text-xl font-semibold mb-2">Inovasi Desa</h3>
+                        <p class="text-gray-600 mb-4">Inovasi merupakan kunci dalam menghadapi tantangan dan memanfaatkan peluang di era modern...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2026</span>
+                            <a href="program/inovasi-desa.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 3: Pemberdayaan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/pemberdayaan.png" alt="Pemberdayaan" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs mb-2">Ekonomi</span>
+                        <h3 class="text-xl font-semibold mb-2">Pemberdayaan</h3>
+                        <p class="text-gray-600 mb-4">Pemberdayaan desa adalah proses meningkatkan kapasitas masyarakat desa agar mampu...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2023-2025</span>
+                            <a href="program/pemberdayaan.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 4: Literasi Digital -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/literasi-digital.jpg" alt="Literasi Digital" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs mb-2">Pendidikan</span>
+                        <h3 class="text-xl font-semibold mb-2">Literasi Digital</h3>
+                        <p class="text-gray-600 mb-4">Di era digital yang serba cepat ini, kemampuan untuk memahami, menilai, dan menggunakan teknologi informasi dengan bijak menjadi..</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2026</span>
+                            <a href="program/literasi-digital.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 5: Anti Narkoba -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/anti-narkoba.jpg" alt="Anti Narkoba" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs mb-2">Kesehatan</span>
+                        <h3 class="text-xl font-semibold mb-2">Anti Narkoba</h3>
+                        <p class="text-gray-600 mb-4">Penyalahgunaan narkoba menjadi salah satu ancaman serius bagi masa depan generasi muda dan stabilitas sosial...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2023-2025</span>
+                            <a href="program/anti-narkoba.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Program 6: Siskamling -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/siskamling.jpeg" alt="Siskamling" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-red-100 text-red-800 rounded-full text-xs mb-2">Keamanan</span>
+                        <h3 class="text-xl font-semibold mb-2">Siskamling</h3>
+                        <p class="text-gray-600 mb-4">Sistem Keamanan Lingkungan (Siskamling) adalah bentuk partisipasi masyarakat dalam menjaga keamanan dan...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2025</span>
+                            <a href="program/siskamling.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program 7: Pencegahan Stunting -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/pencegahan-stunting.png" alt="Pencegahan Stunting" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs mb-2">Kesehatan</span>
+                        <h3 class="text-xl font-semibold mb-2">Pencegahan Stunting</h3>
+                        <p class="text-gray-600 mb-4">Stunting merupakan kondisi gagal tumbuh pada anak akibat kekurangan gizi kronis dalam jangka panjang, terutama pada...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2025</span>
+                            <a href="program/pencegahan-stunting.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program 8: Ketahanan Pangan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/ketahanan-pangan.jpg" alt="Ketahanan Pangan" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs mb-2">Ekonomi</span>
+                        <h3 class="text-xl font-semibold mb-2">Ketahanan Pangan</h3>
+                        <p class="text-gray-600 mb-4">Ketahanan pangan desa merupakan upaya untuk memastikan bahwa masyarakat desa memiliki akses yang cukup terhadap makanan yang...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2025</span>
+                            <a href="program/ketahanan-pangan.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Program 9: PAUD -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/program/paud.jpeg" alt="PAUD" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs mb-2">Pendidikan</span>
+                        <h3 class="text-xl font-semibold mb-2">PAUD</h3>
+                        <p class="text-gray-600 mb-4">Program sistem keamanan lingkungan yang melibatkan partisipasi warga untuk menjaga keamanan dan ketertiban desa...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">Periode: 2024-2025</span>
+                            <a href="program/paud.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Berita Terbaru -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-8">Berita Terbaru</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Berita 1 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/berita/berita1.jpg" alt="Berita 1" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-xs mb-2">Kegiatan</span>
+                        <h3 class="text-xl font-semibold mb-2">Pembukaan Jalan Desa Menuju Kawasan Wisata</h3>
+                        <p class="text-gray-600 mb-4">Desa Panimbang meresmikan jalan baru yang menghubungkan desa dengan kawasan wisata lokal...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">7 Maret 2025</span>
+                            <a href="berita/berita1.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Berita 2 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/berita/berita2.jpg" alt="Berita 2" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-green-100 text-green-800 rounded-full text-xs mb-2">Kesehatan</span>
+                        <h3 class="text-xl font-semibold mb-2">Posyandu Desa Kini Dilengkapi Fasilitas Baru</h3>
+                        <p class="text-gray-600 mb-4">Posyandu Desa Panimbang telah dilengkapi dengan fasilitas baru untuk peningkatan layanan kesehatan masyarakat...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">5 Maret 2025</span>
+                            <a href="berita/berita2.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Berita 3 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/berita/berita3.jpg" alt="Berita 3" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-xs mb-2">Pembangunan</span>
+                        <h3 class="text-xl font-semibold mb-2">Peningkatan Infrastruktur Jaringan Internet Desa</h3>
+                        <p class="text-gray-600 mb-4">Desa Panimbang bekerja sama dengan provider telekomunikasi untuk meningkatkan akses internet di seluruh wilayah desa...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">2 Maret 2025</span>
+                            <a href="berita/berita3.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Berita 4 -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl cursor-pointer">
+                    <img src="/images/berita/berita4.jpg" alt="Berita 4" class="w-full h-48 object-cover">
+                    <div class="p-4">
+                        <span class="inline-block px-3 py-1 bg-blue-100 text-blue-800 rounded-full text-xs mb-2">Pendidikan</span>
+                        <h3 class="text-xl font-semibold mb-2">Perpustakaan Desa Tambah Koleksi Buku Terbaru</h3>
+                        <p class="text-gray-600 mb-4">Perpustakaan Desa Panimbang menambah koleksi ratusan buku baru untuk meningkatkan minat baca masyarakat...</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">28 Februari 2025</span>
+                            <a href="berita/berita4.html" class="text-blue-600 hover:text-blue-800 font-medium">Selengkapnya</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto mr-3">
+                    <div>
+                        <h3 class="text-lg font-bold">DESA PANIMBANG</h3>
+                        <p class="text-sm">Kabupaten Cilacap, Jawa Tengah</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="mb-4 md:mb-0">
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            desapanimbang@gmail.com
+                        </p>
+                    </div>
+                    <div>
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            (0282) 12345678
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-6 pt-6 text-center text-sm">
+                <p>&copy; 2025 Desa Panimbang. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Update time and date
+        function updateTime() {
+            const now = new Date();
+            
+            // Format time
+            let hours = now.getHours();
+            let minutes = now.getMinutes();
+            let seconds = now.getSeconds();
+            
+            hours = hours < 10 ? '0' + hours : hours;
+            minutes = minutes < 10 ? '0' + minutes : minutes;
+            seconds = seconds < 10 ? '0' + seconds : seconds;
+            
+            document.getElementById('time').textContent = `${hours}:${minutes}:${seconds}`;
+            
+            // Format date
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+            
+            const day = days[now.getDay()];
+            const date = now.getDate();
+            const month = months[now.getMonth()];
+            const year = now.getFullYear();
+            
+            document.getElementById('date').textContent = `${day}, ${date} ${month} ${year}`;
+            
+            setTimeout(updateTime, 1000);
+        }
+        
+        updateTime();
+        
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>

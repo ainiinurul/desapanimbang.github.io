@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pelayanan Online - Desa Panimbang</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" x-data="{ open: false }">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex justify-between items-center">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-blue-800">DESA PANIMBANG</span>
+                        <span class="text-xs text-gray-600">KAB. CILACAP</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                    <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                        <button @click="open = !open" class="py-2 text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                            Tentang
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                            <a href="sejarah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                            <a href="wilayah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Wilayah</a>
+                            <a href="statistik.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Statistik</a>
+                        </div>
+                    </div>
+                    <a href="pelayanan.html" class="py-2 text-blue-600 border-b-2 border-blue-600 font-medium">Pelayanan Online</a>
+                    <a href="pengaduan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                    <a href="lembaga.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Lembaga</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button @click="open = !open" class="text-gray-500 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="open" class="md:hidden mt-2">
+                <a href="index.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                <div x-data="{ openSubMenu: false }">
+                    <button @click="openSubMenu = !openSubMenu" class="w-full text-left py-2 px-4 text-gray-700 hover:text-blue-600 font-medium flex items-center justify-between">
+                        Tentang
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="openSubMenu" class="pl-6">
+                        <a href="sejarah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                        <a href="wilayah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Wilayah</a>
+                        <a href="statistik.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Statistik</a>
+                    </div>
+                </div>
+                <a href="pelayanan.html" class="block py-2 px-4 text-blue-600 font-medium">Pelayanan Online</a>
+                <a href="pengaduan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                <a href="lembaga.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Lembaga</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4 transform transition-all duration-500 translate-y-0 opacity-100">Pelayanan Online</h1>
+            <p class="text-lg max-w-2xl mx-auto transform transition-all duration-700 delay-100 translate-y-0 opacity-100">
+                Kami menyediakan layanan online untuk mempermudah masyarakat dalam mengajukan permohonan surat dan dokumen penting lainnya.
+            </p>
+        </div>
+    </header>
+
+    <!-- Form Pelayanan Online -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="max-w-3xl mx-auto bg-white rounded-lg shadow-lg overflow-hidden transform transition-all duration-500 hover:shadow-xl">
+                <div class="p-6 bg-blue-700 text-white">
+                    <h2 class="text-2xl font-bold">Form Permohonan Online</h2>
+                    <p class="mt-2">Silakan isi formulir di bawah ini untuk mengajukan permohonan</p>
+                </div>
+                
+                <form class="p-6 space-y-6" x-data="{ showLainnya: false }">
+                    <!-- NIK -->
+                    <div class="space-y-2">
+                        <label for="nik" class="block text-sm font-medium text-gray-700">NIK</label>
+                        <input type="text" id="nik" name="nik" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Masukkan NIK Anda" required>
+                    </div>
+                    
+                    <!-- No KK -->
+                    <div class="space-y-2">
+                        <label for="no_kk" class="block text-sm font-medium text-gray-700">Nomor Kartu Keluarga</label>
+                        <input type="text" id="no_kk" name="no_kk" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Masukkan Nomor KK Anda" required>
+                    </div>
+                    
+                    <!-- Nama -->
+                    <div class="space-y-2">
+                        <label for="nama" class="block text-sm font-medium text-gray-700">Nama Lengkap</label>
+                        <input type="text" id="nama" name="nama" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Masukkan Nama Lengkap Anda" required>
+                    </div>
+                    
+                    <!-- Jenis Permohonan -->
+                    <div class="space-y-2">
+                        <label for="jenis_permohonan" class="block text-sm font-medium text-gray-700">Jenis Permohonan</label>
+                        <select id="jenis_permohonan" name="jenis_permohonan" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" @change="showLainnya = ($event.target.value === 'Lainnya')" required>
+                            <option value="" disabled selected>Pilih Jenis Permohonan</option>
+                            <option value="Surat Pengantar SKCK">Surat Pengantar SKCK</option>
+                            <option value="Surat Keterangan">Surat Keterangan</option>
+                            <option value="Lainnya">Lainnya</option>
+                        </select>
+                    </div>
+                    
+                    <!-- Lainnya (muncul jika memilih "Lainnya") -->
+                    <div x-show="showLainnya" class="space-y-2" x-transition:enter="transition-all ease-in-out duration-300" x-transition:enter-start="opacity-0 transform scale-95" x-transition:enter-end="opacity-100 transform scale-100">
+                        <label for="lainnya" class="block text-sm font-medium text-gray-700">Sebutkan Jenis Permohonan</label>
+                        <input type="text" id="lainnya" name="lainnya" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Jelaskan permohonan Anda">
+                    </div>
+                    
+                    <!-- Informasi Tambahan -->
+                    <div class="space-y-2">
+                        <label for="keterangan" class="block text-sm font-medium text-gray-700">Keterangan Tambahan (Opsional)</label>
+                        <textarea id="keterangan" name="keterangan" rows="4" class="w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300" placeholder="Tambahkan keterangan jika diperlukan"></textarea>
+                    </div>
+                    
+                    <!-- Submit Button -->
+                    <div class="pt-4">
+                        <button type="submit" class="w-full px-6 py-3 bg-blue-600 text-white font-medium rounded-md shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transform transition-all duration-300 hover:scale-105">
+                            Ajukan Permohonan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Informasi Pelayanan -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center text-blue-800 mb-10">Informasi Pelayanan</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Card 1 -->
+                <div class="bg-blue-50 rounded-lg p-6 shadow transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
+                    <div class="w-14 h-14 flex items-center justify-center bg-blue-600 text-white rounded-full mb-4">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Dokumen yang Dibutuhkan</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Kartu Tanda Penduduk (KTP)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Kartu Keluarga (KK)
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Dokumen pendukung lainnya (sesuai jenis permohonan)
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Card 2 -->
+                <div class="bg-blue-50 rounded-lg p-6 shadow transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
+                    <div class="w-14 h-14 flex items-center justify-center bg-blue-600 text-white rounded-full mb-4">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Waktu Layanan</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Senin - Jumat: 08.00 - 15.00 WIB
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Sabtu: 08.00 - 12.00 WIB
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Pengambilan dokumen: Maksimal 5 hari kerja
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Card 3 -->
+                <div class="bg-blue-50 rounded-lg p-6 shadow transform transition-all duration-500 hover:-translate-y-2 hover:shadow-lg">
+                    <div class="w-14 h-14 flex items-center justify-center bg-blue-600 text-white rounded-full mb-4">
+                        <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-semibold text-blue-800 mb-2">Informasi Tambahan</h3>
+                    <ul class="space-y-2 text-gray-700">
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Seluruh pelayanan bersifat gratis
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Status permohonan dapat dicek melalui WhatsApp
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="h-5 w-5 mr-2 text-blue-600 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Pengambilan dokumen harus membawa KTP asli
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto mr-3">
+                    <div>
+                        <h3 class="text-lg font-bold">DESA PANIMBANG</h3>
+                        <p class="text-sm">Kabupaten Cilacap, Jawa Tengah</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="mb-4 md:mb-0">
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            desapanimbang@gmail.com
+                        </p>
+                    </div>
+                    <div>
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            (0282) 12345678
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-6 pt-6 text-center text-sm">
+                <p>&copy; 2025 Desa Panimbang. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Animasi saat scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const nik = document.getElementById('nik').value;
+            const noKK = document.getElementById('no_kk').value;
+            const nama = document.getElementById('nama').value;
+            const jenisPermohonan = document.getElementById('jenis_permohonan').value;
+            
+            if (!nik || !noKK || !nama || !jenisPermohonan) {
+                alert('Mohon lengkapi semua field yang wajib diisi!');
+                return;
+            }
+            
+            // Simulasi pengiriman data
+            alert('Permohonan Anda telah berhasil dikirim. Silakan cek status permohonan melalui WhatsApp dalam 1x24 jam.');
+            this.reset();
+        });
+    </script>
+</body>
+</html>

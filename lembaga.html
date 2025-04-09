@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lembaga - Desa Panimbang</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+</head>
+<body class="font-sans antialiased text-gray-800">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-md sticky top-0 z-50" x-data="{ open: false }">
+        <div class="container mx-auto px-4 py-2">
+            <div class="flex justify-between items-center">
+                <!-- Logo & Title -->
+                <div class="flex items-center space-x-3">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto">
+                    <div class="flex flex-col">
+                        <span class="font-bold text-lg text-blue-800">DESA PANIMBANG</span>
+                        <span class="text-xs text-gray-600">KAB. CILACAP</span>
+                    </div>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="index.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                    <div class="relative" x-data="{ open: false }" @mouseenter="open = true" @mouseleave="open = false">
+                        <button @click="open = !open" class="py-2 text-gray-700 hover:text-blue-600 font-medium flex items-center">
+                            Tentang
+                            <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" class="absolute left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-1 z-10">
+                            <a href="sejarah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                            <a href="wilayah.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Wilayah</a>
+                            <a href="statistik.html" class="block px-4 py-2 text-gray-700 hover:bg-blue-50">Statistik</a>
+                        </div>
+                    </div>
+                    <a href="pelayanan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pelayanan Online</a>
+                    <a href="pengaduan.html" class="py-2 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                    <a href="lembaga.html" class="py-2 text-blue-600 border-b-2 border-blue-600 font-medium">Lembaga</a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button @click="open = !open" class="text-gray-500 hover:text-blue-600 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div x-show="open" class="md:hidden mt-2">
+                <a href="index.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Beranda</a>
+                <div x-data="{ openSubMenu: false }">
+                    <button @click="openSubMenu = !openSubMenu" class="w-full text-left py-2 px-4 text-gray-700 hover:text-blue-600 font-medium flex items-center justify-between">
+                        Tentang
+                        <svg class="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div x-show="openSubMenu" class="pl-6">
+                        <a href="sejarah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Sejarah</a>
+                        <a href="wilayah.html" class="block py-2 px-4 text-gray-700 hover:bg-blue-50">Wilayah</a>
+                        <a href="statistik.html" class="block px-2 py-4 text-gray-700 hover:bg-blue-50">Statistik</a>
+                    </div>
+                </div>
+                <a href="pelayanan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pelayanan Online</a>
+                <a href="pengaduan.html" class="block py-2 px-4 text-gray-700 hover:text-blue-600 font-medium">Pengaduan</a>
+                <a href="lembaga.html" class="block py-2 px-4 text-blue-600 font-medium">Lembaga</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-12">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4 transform transition-all duration-500 translate-y-0 opacity-100">Perangkat Desa</h1>
+            <p class="text-lg max-w-2xl mx-auto transform transition-all duration-700 delay-100 translate-y-0 opacity-100">
+                Mengenal lebih dekat para perangkat desa yang melayani masyarakat Desa Panimbang dengan dedikasi tinggi.
+            </p>
+        </div>
+    </header>
+
+    <!-- Kepala Desa -->
+    <section class="py-12 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-center">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center w-full md:w-1/4">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/scoups.jpg" alt="S.COUPS" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">S.SCOUPS</h3>
+                        <p class="text-blue-600 font-medium">Kepala Desa Panimbang</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Perangkat Desa Lainnya -->
+    <section class="py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8">
+                <!-- Sekretaris Desa -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/pharita.jpg" alt="Pharita" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">PHARITA</h3>
+                        <p class="text-blue-600 font-medium">Sekretaris Desa</p>
+                    </div>
+                </div>
+
+                <!-- Kasi Pemerintahan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/jaehyun.jpg" alt="Jeong Yun-o" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">JAEHYUN</h3>
+                        <p class="text-blue-600 font-medium">Kasi Pemerintahan</p>
+                    </div>
+                </div>
+
+                <!-- Kasi Kesejahteraan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/taehyung.jpg" alt="TAEHYUNG" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">TAEHYUNG</h3>
+                        <p class="text-blue-600 font-medium">Kasi Kesejahteraan</p>
+                    </div>
+                </div>
+
+                <!-- Kaur Pelayanan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/mingyu.jpg" alt="MINGYU" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">MINGYU</h3>
+                        <p class="text-blue-600 font-medium">Kaur Pelayanan</p>
+                    </div>
+                </div>
+
+                <!-- Kaur Umum dan Perencanaan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/jisoo.jpg" alt="JISOO" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">JISOO</h3>
+                        <p class="text-blue-600 font-medium">Kaur Umum dan Perencanaan</p>
+                    </div>
+                </div>
+
+                <!-- Kaur Keuangan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/jennie.jpg" alt="JENNIE" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">JENNIE</h3>
+                        <p class="text-blue-600 font-medium">Kaur Keuangan</p>
+                    </div>
+                </div>
+
+                <!-- Staff Kasi Pemerintahan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/soobin.jpg" alt="SOOBIN" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">SOOBIN</h3>
+                        <p class="text-blue-600 font-medium">Staff Kasi Pemerintahan</p>
+                    </div>
+                </div>
+
+                <!-- Staff Kasi Kesejahteraan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/wendy.jpg" alt="WENDY" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">WENDY</h3>
+                        <p class="text-blue-600 font-medium">Staff Kasi Kesejahteraan</p>
+                    </div>
+                </div>
+
+                <!-- Staff Kasi Pelayanan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/heeseung.jpg" alt="HEESEUNG" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">HEESEUNG</h3>
+                        <p class="text-blue-600 font-medium">Staff Kasi Pelayanan</p>
+                    </div>
+                </div>
+
+                <!-- Kepala Dusun Cikondang -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/jay.jpg" alt="JAY" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">JAY</h3>
+                        <p class="text-blue-600 font-medium">Kepala Dusun Cikondang</p>
+                    </div>
+                </div>
+
+                <!-- Kepala Dusun Genteng Wetan -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/taeyong.jpg" alt="TAEYONG" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">TAEYONG</h3>
+                        <p class="text-blue-600 font-medium">Kepala Dusun Genteng Wetan</p>
+                    </div>
+                </div>
+
+                <!-- Kepala Dusun Genteng Kulon -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/jin.jpg" alt="JIN" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">JIN</h3>
+                        <p class="text-blue-600 font-medium">Kepala Dusun Genteng Kulon</p>
+                    </div>
+                </div>
+
+                <!-- Kepala Dusun Cikadu -->
+                <div class="bg-white rounded-lg shadow-md overflow-hidden transform transition-all duration-500 hover:-translate-y-2 hover:shadow-xl text-center">
+                    <div class="h-auto overflow-hidden">
+                        <img src="/images/felix.jpg" alt="FELIX" class="w-full h-full object-cover transition-transform duration-500 transform hover:scale-110">
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-blue-800 mb-1">FELIX</h3>
+                        <p class="text-blue-600 font-medium">Kepala Dusun Cikadu</p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-blue-900 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <img src="/images/logo_cilacap.png" alt="Logo Cilacap" class="h-14 w-auto mr-3">
+                    <div>
+                        <h3 class="text-lg font-bold">DESA PANIMBANG</h3>
+                        <p class="text-sm">Kabupaten Cilacap, Jawa Tengah</p>
+                    </div>
+                </div>
+                <div class="flex flex-col md:flex-row md:space-x-8">
+                    <div class="mb-4 md:mb-0">
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                            desapanimbang@gmail.com
+                        </p>
+                    </div>
+                    <div>
+                        <p class="flex items-center">
+                            <svg class="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                            </svg>
+                            (0282) 12345678
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="border-t border-blue-800 mt-6 pt-6 text-center text-sm">
+                <p>&copy; 2025 Desa Panimbang. Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll animations
+        document.addEventListener('DOMContentLoaded', function() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('opacity-100', 'translate-y-0');
+                        entry.target.classList.remove('opacity-0', 'translate-y-10');
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('transition-all', 'duration-700', 'opacity-0', 'translate-y-10');
+                observer.observe(section);
+            });
+        });
+    </script>
+</body>
+</html>
